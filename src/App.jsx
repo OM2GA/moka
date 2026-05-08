@@ -209,6 +209,7 @@ function App() {
     <div className={`app-layout ${isAppsOpen ? 'sidebar-open' : ''}`}>
       <button
         className={`apps-toggle-btn ${isAppsOpen ? 'active' : ''}`}
+        onMouseEnter={() => setIsAppsOpen(true)}
         onClick={() => setIsAppsOpen(true)}
         title="Google Apps"
       >
@@ -220,6 +221,7 @@ function App() {
           <div className="input-group">
             <input
               type="text"
+              autoFocus
               placeholder="Rechercher sur Google ou saisir une URL"
               className="search-input"
               value={query}
@@ -298,7 +300,7 @@ function App() {
         </div>
       </main>
 
-      <aside className="apps-sidebar">
+      <aside className="apps-sidebar" onMouseLeave={() => setIsAppsOpen(false)}>
         <div className="sidebar-header">
           <h2>Google Apps</h2>
           <button className="close-sidebar" onClick={() => setIsAppsOpen(false)}>
