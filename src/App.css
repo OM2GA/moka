@@ -71,6 +71,16 @@
   animation: slideDown 0.3s cubic-bezier(0.2, 0, 0, 1);
 }
 
+.history-dropdown.with-suggestions {
+  grid-template-columns: 1fr;
+  padding: 16px;
+}
+
+.history-dropdown.with-suggestions .history-section {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -108,7 +118,7 @@
   position: relative;
 }
 
-.history-item:hover {
+.history-item:hover, .history-item.selected {
   background-color: #fbf3e4; /* surface-container-low */
   color: #7c5639; /* secondary */
 }
@@ -119,7 +129,7 @@
   transition: color 0.2s ease;
 }
 
-.history-item:hover .icon {
+.history-item:hover .icon, .history-item.selected .icon {
   color: #7c5639;
 }
 
