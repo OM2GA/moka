@@ -1,11 +1,190 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff8ef;
+  overflow: hidden;
+}
+
 .hero-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   padding: 48px 24px; /* xl spacing */
-  background-color: #fff8ef; /* surface / neutral */
+  position: relative;
+}
+
+.apps-sidebar {
+  width: 360px;
+  background-color: #f5edde; /* surface-container */
+  border-left: 1px solid rgba(131, 116, 111, 0.1);
+  padding: 16px 14px; /* reduced from 20px 16px */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* reduced from 16px */
+  overflow-y: auto;
+  box-shadow: -10px 0 30px rgba(75, 44, 32, 0.03);
+  z-index: 20;
+  position: fixed;
+  right: -380px;
+  top: 0;
+  bottom: 0;
+  transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.sidebar-open .apps-sidebar {
+  right: 0;
+}
+
+.apps-toggle-btn {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #ffffff;
+  color: #7c5639;
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(75, 44, 32, 0.08);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  border: 1px solid rgba(131, 116, 111, 0.1);
+}
+
+.apps-toggle-btn:hover {
+  transform: scale(1.05);
+  background-color: #fbf3e4;
+  color: #32170d;
+}
+
+.apps-toggle-btn.active {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(50px);
+}
+
+.close-sidebar {
+  background: transparent;
+  border: none;
+  color: #83746f;
+  cursor: pointer;
+  padding: 2px; /* reduced from 4px */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-sidebar:hover {
+  background-color: rgba(75, 44, 32, 0.05);
+  color: #32170d;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px; /* reduced from 4px */
+}
+
+.sidebar-header h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px; /* reduced from 20px */
+  font-weight: 700;
+  color: #32170d; /* espresso */
+}
+
+.apps-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* reduced from 16px */
+}
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* reduced from 8px */
+}
+
+.category-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px; /* reduced from 11px */
+  font-weight: 700;
+  color: #7c5639;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 4px;
+  opacity: 0.8;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px; /* reduced from 8px */
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px; /* reduced from 4px */
+  padding: 6px 2px; /* reduced from 8px 4px */
+  background-color: #ffffff;
+  border-radius: 10px; /* reduced from 12px */
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  border: 1px solid rgba(131, 116, 111, 0.1);
+  box-shadow: 0 2px 8px rgba(75, 44, 32, 0.04);
+}
+
+.app-card:hover {
+  background-color: #fbf3e4; /* surface-container-low */
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(75, 44, 32, 0.08);
+  border-color: rgba(131, 116, 111, 0.2);
+}
+
+.app-icon {
+  width: 28px; /* reduced from 32px */
+  height: 28px; /* reduced from 32px */
+  background-color: #fbf3e4;
+  border-radius: 6px; /* reduced from 8px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.app-icon img {
+  width: 18px; /* reduced from 20px */
+  height: 18px; /* reduced from 20px */
+  object-fit: contain;
+}
+
+.app-card:hover .app-icon {
+  background-color: #ffffff;
+}
+
+.app-name {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 10px; /* reduced from 11px */
+  font-weight: 600;
+  color: #504440; /* on-surface-variant */
+  text-align: center;
+}
+
+.app-card:hover .app-name {
+  color: #32170d;
 }
 
 .search-wrapper {
