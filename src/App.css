@@ -70,6 +70,38 @@
   transform: translateX(50px);
 }
 
+.gemini-btn {
+  position: fixed;
+  top: 32px;
+  right: 96px;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #ffffff;
+  color: #7c5639;
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(75, 44, 32, 0.08);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  border: 1px solid rgba(131, 116, 111, 0.1);
+}
+
+.gemini-btn:hover {
+  transform: scale(1.05);
+  background-color: #fbf3e4;
+  color: #32170d;
+}
+
+.sidebar-open .gemini-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(50px);
+}
+
 .close-sidebar {
   background: transparent;
   border: none;
@@ -192,6 +224,258 @@
   display: flex;
   flex-direction: column;
   gap: 24px; /* lg spacing / gutter */
+}
+
+/* Shortcuts Olive */
+.shortcuts-olive {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.shortcut-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+  padding: 8px;
+  border-radius: 16px;
+  width: 80px;
+  margin-left: -40px; /* center horizontally */
+  margin-top: -40px; /* center vertically roughly */
+}
+
+.shortcut-item:hover {
+  background-color: rgba(251, 243, 228, 0.6);
+  transform: translate(var(--x), var(--y)) scale(1.1) !important;
+}
+
+.shortcut-icon {
+  width: 44px;
+  height: 44px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(75, 44, 32, 0.08);
+  border: 1px solid rgba(131, 116, 111, 0.1);
+  transition: all 0.3s ease;
+}
+
+.shortcut-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.shortcut-icon .material-symbols-rounded {
+  color: #7c5639;
+  font-size: 24px;
+}
+
+.shortcut-name {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #504440;
+  text-align: center;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shortcut-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ffdad6;
+  color: #ba1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.shortcut-edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f5edde;
+  color: #7c5639;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.shortcut-item:hover .shortcut-delete,
+.shortcut-item:hover .shortcut-edit {
+  opacity: 1;
+}
+
+.shortcut-delete .material-symbols-rounded,
+.shortcut-edit .material-symbols-rounded {
+  font-size: 14px;
+}
+
+.add-shortcut {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.add-shortcut.limit-reached {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.add-shortcut.limit-reached .shortcut-icon {
+  background-color: #f5edde;
+  border-style: dashed;
+}
+
+.shortcut-count {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: #7c5639;
+  opacity: 0.5;
+  margin-top: -4px;
+}
+
+/* Modal */
+.shortcut-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(50, 23, 13, 0.2);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.shortcut-modal {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(75, 44, 32, 0.2);
+  border: 1px solid rgba(131, 116, 111, 0.1);
+  animation: modalScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.shortcut-modal h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #32170d;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #7c5639;
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(131, 116, 111, 0.2);
+  background-color: #f5edde;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 16px;
+  color: #32170d;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #32170d;
+  background-color: #ffffff;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-actions button:not(.primary) {
+  background-color: transparent;
+  color: #83746f;
+}
+
+.modal-actions button:not(.primary):hover {
+  background-color: #fbf3e4;
+  color: #32170d;
+}
+
+.modal-actions button.primary {
+  background-color: #32170d;
+  color: #ffffff;
+}
+
+.modal-actions button.primary:hover {
+  background-color: #4b2c20;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(50, 23, 13, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .input-group {
